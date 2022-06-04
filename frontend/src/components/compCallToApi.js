@@ -29,12 +29,13 @@ class CompCallToApi extends React.Component {
                 <Col key={e._id}>
                 <Card>
                     <Card.Img variant="top" src="logo512.png" />
-                    <Button onClick={()=>this.setState({idSelected:e.title})} variant="outline-primary">Add to cart</Button>{' '}
+                    <Button onClick={()=>this.setState({idSelected:e._id})} variant="outline-primary">Add to cart</Button>{' '}
                     <Card.Body>
                         <Card.Title>{ e.title }</Card.Title>
                         <Card.Text>
-                            This is a longer card with supporting text below as a natural
-                            lead-in to additional content. This content is a little bit longer.
+                            price: { e.price }<br></br>
+                            created: {e.createdAt}<br></br>
+                            update time: {e.updatedAt}<br></br>
                         </Card.Text>
                     </Card.Body>
                 </Card>

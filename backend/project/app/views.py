@@ -2,6 +2,8 @@ from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 
+from .models import Order
+
 import json
 
 import requests
@@ -20,23 +22,13 @@ def car(request):
     # ====================
     if request.method == 'GET':
         return HttpResponse("reponse!")
-    #else:
-    #    return HttpResponse("its not get!")
     # ====================
     elif request.method == 'POST':
         asd = json.loads(request.body)
-        print(asd)
-        myResponse = {"hola": "response"}
-        # try:
-        #     Person(
-        #         first_name=asd["firstName"],
-        #         last_name=asd["lastName"]).save()
-        #     myResponse = {
-        #         "info": "backend got correctly your post petition!"
-        #     }
-        # except:
-        #     myResponse = {
-        #         "info": "json format is not the correct one. Backend expected a diferent one"
-        #     }
-
+        try:
+            Order(products=asd["products"]).save()
+            myResponse = {"info": "order created! :D"}
+        except:
+            myResponse = {"info": "something wrong happened"}
+        
         return JsonResponse(myResponse,safe=False)
